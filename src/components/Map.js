@@ -18,20 +18,20 @@ const Map = ({setInfocard, infocard}) => {
        {location: "Herttoniemi", airQuality: 0.45, lat: 60.193571, lng: 25.036196 },
    ]
 
-   const setCardInfo = (location = infocard.location, airQuality = infocard.airQuality, visible) => {
-        setInfocard({location: location, airQuality: airQuality, visible: visible});
+   const setCardInfo = (location = infocard.location, airQuality = infocard.airQuality, visible, position = infocard.position) => {
+        setInfocard({location: location, airQuality: airQuality, visible: visible, position: position});
    }
 
 
     return (
         <div  className="map-container">
            
-        <GoogleMap className="map" onClick={() => setCardInfo(undefined, undefined, false)}
+        <GoogleMap className="map" onClick={() => setCardInfo(undefined, undefined, false, undefined)}
             defaultZoom={12}
             defaultCenter={{ lat: 60.169857, lng: 24.938379 }}
            >
           {dustMeters.map(meter => {
-              return <Marker onClick={() => setCardInfo(meter.location, meter.airQuality, true)} key={meter.lat + meter.lng} position={{lat: meter.lat, lng: meter.lng}}/>
+              return <Marker onClick={() => setCardInfo(meter.location, meter.airQuality, true, {lat: meter.lat, lng: meter.lng})} key={meter.lat + meter.lng} position={{lat: meter.lat, lng: meter.lng}}/>
           })}
         </GoogleMap>
         </div>

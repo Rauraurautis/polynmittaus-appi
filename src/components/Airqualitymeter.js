@@ -17,7 +17,7 @@ export default function Airqualitymeter({ airQuality }) {
     const viisariPosition = (airQuality * 100) + 62;
     
     return (
-        <div>
+        <div className="dustmeter">
             <div className="dustmeter-image">
                 <img src={Dustmeter} alt="dustmeter" />
                 <div className="viisari">

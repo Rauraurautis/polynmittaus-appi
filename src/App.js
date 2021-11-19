@@ -2,14 +2,14 @@ import Navbar from "./components/Navbar";
 import Contact from "./components/Contact";
 import FAQ from "./components/FAQ";
 import Statistics from "./components/Statistics";
-import Map from "./components/Map";
+import WrappedMap from "./components/Map";
 import Infocard from "./components/Infocard";
 import React, { useState, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
 
-  const [infocard, setInfocard] = useState({ location: undefined, airQuality: "", visible: false});
+  const [infocard, setInfocard] = useState({ location: undefined, airQuality: "", visible: false, position: {}});
   const [mouseCoords, setMouseCoords] = useState({x: null, y: null});
   
 
@@ -22,9 +22,9 @@ const App = () => {
       
       <Router>
         <Navbar setInfocard={setInfocard} />
-        <Infocard visible={infocard.visible} cursorCoords={mouseCoords} location={infocard.location} airQuality={infocard.airQuality} message={infocard.message} />
+        <Infocard visible={infocard.visible} cursorCoords={mouseCoords} location={infocard.location} airQuality={infocard.airQuality} message={infocard.message} position={infocard.position} />
         <Routes>
-          <Route path="/" element={<Map
+          <Route path="/" element={<WrappedMap
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&callback=initMap`}
             loadingElement={<div style={{ height: "100%" }} />}
             containerElement={<div style={{ height: "calc(100vh-10%)" }} />}
