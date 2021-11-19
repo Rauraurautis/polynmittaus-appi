@@ -2,6 +2,7 @@ import React from 'react'
 import { GoogleMap, withScriptjs, withGoogleMap, Marker } from "react-google-maps"
 import {Link} from "react-router-dom"
 import Infocard from './Infocard'
+import markerIcon from "./images/marker.png"
 
 
 
@@ -31,7 +32,7 @@ const Map = ({setInfocard, infocard}) => {
             defaultCenter={{ lat: 60.169857, lng: 24.938379 }}
            >
           {dustMeters.map(meter => {
-              return <Marker onClick={() => setCardInfo(meter.location, meter.airQuality, true, {lat: meter.lat, lng: meter.lng})} key={meter.lat + meter.lng} position={{lat: meter.lat, lng: meter.lng}}/>
+              return <Marker icon={{url: markerIcon}}color="blue" onClick={() => setCardInfo(meter.location, meter.airQuality, true, {lat: meter.lat, lng: meter.lng})} key={meter.lat + meter.lng} position={{lat: meter.lat, lng: meter.lng}}/>
           })}
         </GoogleMap>
         </div>
