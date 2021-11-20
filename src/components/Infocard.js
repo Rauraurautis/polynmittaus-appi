@@ -10,7 +10,7 @@ export default function Infocard({ location, airQuality, cursorCoords, visible, 
     .then(response => {
         setWeatherData(response.data)
     }).catch(error => {
-        console.error(error);
+        setWeatherData(null)
     })
     }, [])
     
@@ -30,9 +30,9 @@ export default function Infocard({ location, airQuality, cursorCoords, visible, 
     return (
         <div className="infocard-container" style={positionStyle}>
             <h2>{location}</h2>
-            <h3>{weatherData !== {} ? weatherData.weather[0].description : "Cloudy"}</h3>
-            <div className="weather-image"><img src={`http://openweathermap.org/img/wn/${weatherData !== {} ? weatherData.weather[0].icon : "04n"}@2x.png`} alt=" "/></div>
-            <h3 id="temperature">{weatherData !== {} ? (weatherData.main.temp - 273.15).toFixed(1) : "0"}°C</h3>
+            <h3>{weatherData !== null? weatherData.weather[0].description : "Cloudy"}</h3>
+            <div className="weather-image"><img src={`http://openweathermap.org/img/wn/${weatherData !== null ? weatherData.weather[0].icon : "04n"}@2x.png`} alt=" "/></div>
+            <h3 id="temperature">{weatherData !== null ? (weatherData.main.temp - 273.15).toFixed(1) : "0"}°C</h3>
             <Airqualitymeter airQuality={airQuality} />
         </div>
     )
